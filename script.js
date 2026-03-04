@@ -210,4 +210,5 @@ restartBtn.addEventListener("click", restartQuiz);
 themeToggleBtn.addEventListener("click", toggleTheme);
 
 applyTheme(localStorage.getItem("quiz-theme") || "light");
+
 loadQuestion();
