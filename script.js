@@ -68,6 +68,43 @@ const nextBtn = document.getElementById("next-btn");
 const resultEl = document.getElementById("result");
 const scoreTextEl = document.getElementById("score-text");
 const restartBtn = document.getElementById("restart-btn");
+const themeToggleBtn = document.getElementById("theme-toggle");
+const jokeEl = document.getElementById("joke");
+
+
+const wrongAnswerJokes = [
+  "Oops! Even JavaScript needs a semicolon break sometimes 😄",
+  "Not quite! That answer just took a wrong turn at <main> street.",
+  "Close one! Your answer tried, but the correct one flexed harder.",
+  "Wrong answer detected. Don’t worry, even pros debug twice!",
+  "That was bold! Unfortunately, not as correct as it was confident."
+];
+
+function getRandomJoke() {
+  return wrongAnswerJokes[Math.floor(Math.random() * wrongAnswerJokes.length)];
+}
+
+function hideJoke() {
+  jokeEl.classList.add("hidden");
+  jokeEl.textContent = "";
+}
+
+function showJoke() {
+  jokeEl.textContent = `😅 ${getRandomJoke()}`;
+  jokeEl.classList.remove("hidden");
+}
+
+function applyTheme(theme) {
+  const isDark = theme === "dark";
+  document.body.classList.toggle("dark", isDark);
+  themeToggleBtn.textContent = isDark ? "☀️ Day Mode" : "🌙 Night Mode";
+}
+
+function toggleTheme() {
+  const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
+  localStorage.setItem("quiz-theme", nextTheme);
+  applyTheme(nextTheme);
+}
 
 let currentIndex = 0;
 let score = 0;
@@ -82,6 +119,7 @@ function loadQuestion() {
   selectedOption = null;
   answered = false;
   nextBtn.textContent = currentIndex === quizData.length - 1 ? "Finish" : "Next";
+  hideJoke();
 
   currentQuestion.options.forEach((optionText) => {
     const button = document.createElement("button");
@@ -132,6 +170,10 @@ function handleNext() {
   answered = true;
   showAnswerFeedback();
 
+  if (selectedOption !== currentQuestion.answer) {
+    showJoke();
+  }
+
   setTimeout(() => {
     currentIndex += 1;
 
@@ -165,5 +207,8 @@ function restartQuiz() {
 
 nextBtn.addEventListener("click", handleNext);
 restartBtn.addEventListener("click", restartQuiz);
+themeToggleBtn.addEventListener("click", toggleTheme);
+
+applyTheme(localStorage.getItem("quiz-theme") || "light");
 
 loadQuestion();

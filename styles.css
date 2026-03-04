@@ -8,6 +8,20 @@
   --correct: #16a34a;
   --wrong: #dc2626;
   --border: #dbe3ef;
+  --joke-bg: #fff7ed;
+  --joke-text: #9a3412;
+}
+
+body.dark {
+  --bg: #0b1220;
+  --card: #111827;
+  --text: #e5e7eb;
+  --muted: #9ca3af;
+  --primary: #60a5fa;
+  --primary-hover: #3b82f6;
+  --border: #374151;
+  --joke-bg: #2a160e;
+  --joke-text: #fed7aa;
 }
 
 * {
@@ -39,6 +53,21 @@ body {
 .quiz-header h1 {
   margin: 0;
   font-size: clamp(1.4rem, 2.4vw, 2rem);
+}
+
+.quiz-header {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  justify-self: start;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
 }
 
 .progress {
@@ -121,6 +150,16 @@ body {
   border-top: 1px solid var(--border);
 }
 
+.joke {
+  margin: 1rem 0 0;
+  padding: 0.65rem 0.8rem;
+  border-radius: 8px;
+  background: var(--joke-bg);
+  color: var(--joke-text);
+  border: 1px dashed var(--border);
+  font-size: 0.95rem;
+}
+
 .hidden {
   display: none;
 }
@@ -137,4 +176,13 @@ body {
   .actions {
     justify-content: stretch;
   }
+}
+
+
+body.dark .option {
+  background: #1f2937;
+}
+
+body.dark .option.selected {
+  background: #1e3a8a;
 }
