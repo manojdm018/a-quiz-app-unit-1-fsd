@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Web App</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="quiz-card" aria-live="polite">
+      <header class="quiz-header">
+        <h1>Quiz Web App</h1>
+        <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Toggle night mode">🌙 Night Mode</button>
+        <p id="progress" class="progress">Question 1 / 60</p>
+      </header>
+
+      <div id="question-container">
+        <h2 id="question" class="question">Loading question...</h2>
+        <div id="options" class="options" role="radiogroup" aria-label="Answer choices"></div>
+        <p id="joke" class="joke hidden" aria-live="polite"></p>
+      </div>
+
+      <div class="actions">
+        <button id="next-btn" class="btn" type="button">Next</button>
+      </div>
+
+      <section id="result" class="result hidden">
+        <h2>Quiz Completed 🎉</h2>
+        <p id="score-text"></p>
+        <button id="restart-btn" class="btn" type="button">Restart Quiz</button>
+      </section>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
